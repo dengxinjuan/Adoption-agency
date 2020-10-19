@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="row">
+<div class="col-6">
+<div class="card bg-dark text-white">
+    <img src={{apet.photo_url}} class="card-img" alt="...">
+    <div class="card-img-overlay">
+      <h1 class="card-title text-success">{{apet.name}}</h1>
+      <p class="card-text text-success">{{apet.notes}}</p>
+      <p class="card-text text-success">{{apet.name}} is {{apet.age}} old.</p>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="col-6">
+  
+    <form method="POST">
+        <h1>Edit the Pet </h1>
+    {{ editform.hidden_tag() }} <!--add type=hidden form fields -->
+
+    {% for field in editform
+           if field.widget.input_type != 'hidden' %}
+  
+      <p>
+        {{ field.label }}
+        {{ field }}
+  
+        {% for error in field.errors %}
+          {{ error }}
+        {% endfor %}
+      </p>
+  
+    {% endfor %}
+  <button class="btn-lg btn-success" type="submit">Edit!</button>
+</form>
+
+<div>
+    <br>
+    <br>
+    <a href="/" class="btn-lg btn-success">Return to Home</a>
+</div>
+
+</div>
+
+
+
+</div>
+
+{%endblock%}

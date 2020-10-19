@@ -1,0 +1,35 @@
+
+
+{%extends 'base.html'%}
+
+{%block content%}
+<form id="add_pet_form" method="POST">
+
+    <h1>Add a Pet</h1>
+
+    {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+
+    {% for field in form
+           if field.widget.input_type != 'hidden' %}
+  
+      <p>
+        {{ field.label }}
+        {{ field }}
+  
+        {% for error in field.errors %}
+          {{ error }}
+        {% endfor %}
+      </p>
+  
+    {% endfor %}
+
+    <button class="btn-lg btn-primary" type="submit" >Add!</button>
+
+</form>
+
+<hr>
+
+<a href="/" class="btn btn-lg btn-success">Home</a>
+
+{%endblock%}
+
